@@ -9,7 +9,7 @@ import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login.jsx";
 import Publish from "./pages/Publish";
-
+import Payement from "./pages/Payement";
 //components
 import Header from "./components/Header";
 
@@ -26,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/publish" element={<Publish />} />
+          <Route path="/payement" element={<Payement />} />
         </Routes>
       </Router>
     </div>

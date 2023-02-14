@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Navigate, useNavigate } from "react-router-dom";
 // import Dropzone from "../components/Dropzone";
 
 const Publish = () => {
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [brand, setBrand] = useState("");
@@ -16,6 +17,7 @@ const Publish = () => {
   const [exchangeInterest, setExchangeInterest] = useState(false);
 
   const token = Cookies.get("token");
+  let navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,23 +44,40 @@ const Publish = () => {
           },
         }
       );
-      alert(JSON.stringify(response.data));
+      alert("Votre offre a bien était posté");
+      navigate("/");
     } catch (error) {
       console.log(error.data.response);
     }
   };
 
-  return (
+  return !token ? (
+    <Navigate to="/login" />
+  ) : (
     <div className="grey">
       <form className="sell-container" onSubmit={handleSubmit}>
         <h2>Vends ton article</h2>
-        <div>
-          <input
-            type="file"
-            onChange={(event) => {
-              setFile(event.target.files[0]);
-            }}
-          />
+        <div className="dropzone">
+          <div className={!file ? "dropzone-border" : "display-none"}>
+            <div>
+              <label htmlFor="file">Ajoute une photo</label>
+            </div>
+
+            <input
+              type="file"
+              id="file"
+              onChange={(event) => {
+                setFile(event.target.files[0]);
+              }}
+            />
+          </div>
+          {file && (
+            <img
+              className="product-picture"
+              src={URL.createObjectURL(file)}
+              alt="product"
+            />
+          )}
         </div>
 
         {/* <div className="dropzone">
@@ -79,14 +98,24 @@ const Publish = () => {
           </div>
           <div className="text-input">
             <p className="text-p">Décris ton article</p>
-            <input
+            <textarea
+              cols="60"
+              rows="5"
+              value={desc}
+              placeholder="ex: Porté quelquesfois, taille correctement"
+              onChange={(event) => {
+                setDesc(event.target.value);
+              }}
+            ></textarea>
+
+            {/* <input
               type="text"
               placeholder="ex: porté quelquesfois, taille correctement"
               value={desc}
               onChange={(event) => {
                 setDesc(event.target.value);
               }}
-            />
+            /> */}
           </div>
         </div>
 

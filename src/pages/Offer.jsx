@@ -1,11 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 
 const Offer = () => {
   const { id } = useParams();
   const [idData, setIdData] = useState();
   const [isLoad, setIsLoad] = useState(false);
+  let navigate = useNavigate();
 
   const tabDetails = ["MARQUE", "TAILLE", "ÉTAT", "COULEUR", "EMPLACEMENT"];
   useEffect(() => {
@@ -58,7 +60,20 @@ const Offer = () => {
               <p>{idData.owner.account.username}</p>
             </div>
           </div>
-          <button className="button-buy">Acheter</button>
+          <button
+            className="button-buy"
+            onClick={() => {
+              navigate("/payement", {
+                state: {
+                  id: id,
+                  title: idData.product_name,
+                  price: idData.product_price,
+                },
+              });
+            }}
+          >
+            Acheter
+          </button>
         </div>
       </div>
     </div>

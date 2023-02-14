@@ -309,14 +309,6 @@ a {
   cursor: pointer;
 }
 
-.dropzone {
-  text-align: center;
-  padding: 20px;
-  border: 3px blue dashed;
-  width: 60%;
-  margin: auto;
-}
-
 .sell-container {
   height: 100%;
   width: 70%;
@@ -391,4 +383,125 @@ a {
   font: inherit;
   outline: inherit;
   padding: 12px;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  font-size: 16px;
+  border-bottom: 1px solid #ebedee;
+  color: #000;
+  width: 50%;
+  padding: 1px 2px;
+}
+
+.dropzone {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 2px grey;
+  margin: 20px 0;
+}
+
+.dropzone-border {
+  border: 1px #ebedee dashed;
+  width: 100%;
+  height: 100%;
+}
+
+.dropzone-border > div {
+  padding: 50px;
+}
+
+.dropzone-border > div > label {
+  font-size: 20px;
+  border: 1px solid #0ab1ba;
+  border-radius: 5px;
+  padding: 10px;
+  color: #0ab1ba;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#file {
+  display: none;
+}
+
+.product-picture {
+  height: 15%;
+  width: 15%;
+  object-fit: contain;
+}
+
+.product-payement {
+  margin-top: 40px;
+  height: 550px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 40%;
+}
+
+.offer-resume {
+  color: #999;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.offer-content {
+  border-bottom: 1px solid #ebedee;
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.offer-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 16px;
+}
+.offer-content-text {
+  align-items: center;
+  line-height: 22px;
+  padding: 4px 0;
+  font-size: 16px;
+}
+
+.offer-content-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.card-element {
+  border-radius: 4px;
+  margin: 20px 0 20px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%);
+}
+
+.button-pay {
+  background: #00c06d;
+  border: 1px solid;
+  border-color: #00c06d;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  height: 44px;
+  width: 100%;
+}
+
+.pay-done {
+  margin-top: 25px;
+  font-size: 20px;
 }
