@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
-// import Dropzone from "../components/Dropzone";
 
 const Publish = () => {
   const [file, setFile] = useState();
@@ -62,7 +61,6 @@ const Publish = () => {
             <div>
               <label htmlFor="file">Ajoute une photo</label>
             </div>
-
             <input
               type="file"
               id="file"
@@ -79,11 +77,6 @@ const Publish = () => {
             />
           )}
         </div>
-
-        {/* <div className="dropzone">
-        <Dropzone file={file} setFile={setFile} />
-      </div> */}
-
         <div className="text-selection">
           <div className="text-input">
             <p className="text-p">Titre</p>
@@ -107,15 +100,6 @@ const Publish = () => {
                 setDesc(event.target.value);
               }}
             ></textarea>
-
-            {/* <input
-              type="text"
-              placeholder="ex: porté quelquesfois, taille correctement"
-              value={desc}
-              onChange={(event) => {
-                setDesc(event.target.value);
-              }}
-            /> */}
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Offer = () => {
   const { id } = useParams();
@@ -63,13 +64,17 @@ const Offer = () => {
           <button
             className="button-buy"
             onClick={() => {
-              navigate("/payement", {
-                state: {
-                  id: id,
-                  title: idData.product_name,
-                  price: idData.product_price,
-                },
-              });
+              if (!Cookies.get("token")) {
+                navigate("/login");
+              } else {
+                navigate("/payement", {
+                  state: {
+                    id: id,
+                    title: idData.product_name,
+                    price: idData.product_price,
+                  },
+                });
+              }
             }}
           >
             Acheter
