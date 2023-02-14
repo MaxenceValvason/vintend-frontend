@@ -32,7 +32,11 @@ const Offer = () => {
     <div className="grey">
       <div className="offer-product container">
         <div className="left-side">
-          <img className="image-product" src={idData.product_image.url} />
+          <img
+            className="image-product"
+            src={idData.product_image.url}
+            alt="photo"
+          />
         </div>
 
         <div className="product">
@@ -46,8 +50,6 @@ const Offer = () => {
                       {tabDetails[i]} <span>{elem[tabDetails[i]]}</span>
                     </div>
                   );
-                } else {
-                  // return;
                 }
               }
             })}

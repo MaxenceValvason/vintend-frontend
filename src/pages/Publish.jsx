@@ -43,8 +43,10 @@ const Publish = () => {
           },
         }
       );
+
       alert("Votre offre a bien était posté");
       navigate("/");
+      console.log(response);
     } catch (error) {
       console.log(error.data.response);
     }
