@@ -1,8 +1,6 @@
 import "./App.css";
 
-import axios from "axios";
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
@@ -10,40 +8,24 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login.jsx";
+import Publish from "./pages/Publish";
 
 //components
 import Header from "./components/Header";
 
 function App() {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
-        );
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return isLoading ? (
-    <span>En cours de chargement...</span>
-  ) : (
+  return (
     <div className="App">
       <Router>
-        <Header />
+        <Header setSearch={setSearch} />
         <Routes>
-          <Route path="/" element={<Home data={data} />} />
+          <Route path="/" element={<Home search={search} />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/publish" element={<Publish />} />
         </Routes>
       </Router>
     </div>

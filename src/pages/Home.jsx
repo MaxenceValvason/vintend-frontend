@@ -1,11 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-// import Offer from "../pages/Offer";
 import HomeOffer from "../components/HomeOffer";
 
-const Home = ({ data }) => {
+const Home = ({ search }) => {
   let navigate = useNavigate();
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
+        );
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+  }, [search]);
+
+  return isLoading ? (
+    <span>En cours de chargement...</span>
+  ) : (
     <div>
       <div className="hero">
         <img src="https://lereacteur-vinted.netlify.app/static/media/tear.884480420945b3afd77b44a6c5f98567.svg" />

@@ -57,9 +57,9 @@ const Login = () => {
   useEffect(() => {
     Cookies.set("token", token, { expires: 7 });
     if (dataIsReceived) {
-      navigate("/");
+      navigate("/publish");
     }
-  }, [dataIsReceived]);
+  }, [dataIsReceived, navigate, token]);
 
   return (
     <div className="signup-container">

@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
   let navigate = useNavigate();
 
   const logout = () => {
@@ -22,31 +22,48 @@ const Header = () => {
             alt=""
           />
         </div>
-        <input type="text" placeholder="Recherche des articles" />
+        <input
+          type="text"
+          placeholder="Recherche des articles"
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
         <div className={Cookies.get("token") ? "display-none" : ""}>
-          <button
-            className="button-login-signup"
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            S'inscrire
-          </button>
-          <button
-            className="button-login-signup"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Se connecter
-          </button>
+          <div className="logs">
+            <button
+              className="button-login-signup"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              S'inscrire
+            </button>
+            <button
+              className="button-login-signup"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Se connecter
+            </button>
+          </div>
         </div>
         <div className={!Cookies.get("token") ? "display-none" : null}>
           <button className="button-logout" onClick={logout}>
             Se déconnecter
           </button>
         </div>
-        <button className="button-login-signup button-sold">
+        <button
+          className="button-login-signup button-sold"
+          onClick={() => {
+            if (Cookies.get("token")) {
+              navigate("/publish");
+            } else {
+              navigate("/login");
+            }
+          }}
+        >
           Vends tes articles
         </button>
       </div>
